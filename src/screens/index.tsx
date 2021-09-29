@@ -92,13 +92,14 @@ export default function Index() {
                                     </div>
                                     : <>No score for this wallet.</>
                                 : <>
-                                    Connect your wallet to see your score.<br />
+                                    Connect your wallet to see your score.
                                     <Button onClick={() => {
                                         setLoading(true);
                                         connect();
                                     }}>
                                         Connect Wallet
                                     </Button>
+                                    <small>Brave users: disable shields</small>
                                 </>
                         }
                     </div>

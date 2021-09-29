@@ -50,14 +50,12 @@ function Account () {
     
 
     return (
-        <Link to='/account'>
-            <Button>
-                <img src={stoic}
-                    width={18}
-                    height={18}
-                />
-                {`${principal?.toText().slice(0, 4)}...${principal?.toText().slice(principal?.toText().length - 3)}`}
-            </Button>
-        </Link>
+        <Button>
+            <img src={stoic}
+                width={18}
+                height={18}
+            />
+            {`${principal?.toText().slice(0, 4)}...${principal?.toText().slice(principal?.toText().length - 3)}`}
+        </Button>
     );
 };
