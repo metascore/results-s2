@@ -17,7 +17,7 @@
     "@fontsource/vt323": "^4.5.0",
     "@metascore/query": "^0.0.12",
     "framer-motion": "^4.1.17",
-    "ic-stoic-identity": "1.5.0",
+    "ic-stoic-identity": "2.0.0",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
     "react-helmet": "^6.1.0",

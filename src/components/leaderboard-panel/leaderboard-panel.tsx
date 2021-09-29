@@ -50,7 +50,9 @@ export default function LeaderboardPanel ({ children } : Props) {
             flavor: score.account.flavorText,
         },
         score: Number(score.score),
-    })).slice(offset, perPage);
+    })).slice(offset, perPage + offset);
+
+    console.log(offset, page * perPage);
 
     return (
         <div className={Styles.root}>

@@ -15,3 +15,18 @@
 .big {
     font-size: 72px;
 }
+
+@media (max-width: 1068px) {
+    .root { font-size: 40px; }
+    .big { font-size: 60px; }
+}
+
+@media (max-width: 860px) {
+    .root { font-size: 32px; }
+    .big { font-size: 40px; }
+}
+
+@media (max-width: 560px) {
+    .root { font-size: 24px; }
+    .big { font-size: 32px; }
+}

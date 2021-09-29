@@ -64,10 +64,9 @@ interface EntryProps {
 
 function Entry ({gameEntry, overallEntry, offset} : EntryProps) {
     const entry = gameEntry || overallEntry;
-    const overall = overallEntry !== undefined;
     if (!entry) return <></>;
     return <div className={Styles.row}>
-        <div className={[Styles.cell, Styles.position].join(' ')}>#{entry.index + 1 + (offset || 0)}</div>
+        <div className={[Styles.cell, Styles.position].join(' ')}>#{entry.index + 1}</div>
         <div className={[Styles.cell, Styles.name].join(' ')}>
             <img
                 className={Styles.avatar}

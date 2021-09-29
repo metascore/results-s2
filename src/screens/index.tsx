@@ -1,7 +1,6 @@
 import React from 'react';
 import LeaderboardPanel from 'components/leaderboard-panel/leaderboard-panel';
 import { Helmet } from 'react-helmet';
-import OG from 'assets/og/main.webp';
 import Grid, { GridRow } from 'components/grid/grid';
 import Neon from 'components/neon/neon';
 import Podium from 'assets/podium.png';
@@ -10,6 +9,7 @@ import { useAccount } from 'context/account';
 import Button from 'components/button/button';
 import { useStoic } from 'context/stoic';
 import Panel from 'components/panel/panel';
+import Loader from 'components/loader/loader';
 
 
 export default function Index() {
@@ -17,47 +17,63 @@ export default function Index() {
     const { account } = useAccount();
     const { connect } = useStoic();
 
+    const [loading, setLoading] = React.useState(true);
+
     const userScore = React.useMemo(() => {
-        if (!account) return;
-        return Scores.find((x) => x.account.id === Number(account.id));
+        if (!account) {
+            setLoading(false);
+            return;
+        };
+        setLoading(true);
+        const score = Scores.find((x) => x.account.id === Number(account.id));
+        setLoading(false);
+        return score;
     }, [account])
 
     return (
         <div>
             <Helmet>
-                <meta name="og:title" content="CONNECT 💰 PLAY 🕹️ WIN 💎 METASCORE" />
-                <meta name="og:image" content={OG} />
+                <meta name="og:title" content="RESULTS 💎" />
             </Helmet>
             <Grid big>
                 <GridRow center>
                     <Neon big>
-                        The Best Gamers of the <br />
+                        The Best Gamers of the <br className="hide-sm" />
                         DSCVR Hackaton Season 2
                     </Neon>
                 </GridRow>
+                <div className="hide-sm">
+                    <GridRow center>
+                        <img className="fluid" src={Podium} />
+                    </GridRow>
+                </div>
                 <GridRow center>
-                    <img className="fluid" src={Podium} />
-                </GridRow>
-                <GridRow center>
-                    <Grid>
+                    <div style={{display: 'flex', flexDirection: 'column', gap: '30px'}}>
                         <Neon>Your Score</Neon>
                         {
-                            account
-                            ? <>
-                                {
-                                    userScore
-                                    ? <>Found your score.</>
+                            loading
+                            ? <Loader />
+                            : account
+                                ? userScore
+                                    ? <>
+                                        Alias: {userScore.account.alias}<br />
+                                        Rank: {userScore.account.rank}<br />
+                                        Position: #{Scores.indexOf(userScore) + 1}<br />
+                                        Final Score: {userScore.score}<br />
+                                        Flavor Text: {userScore.account.flavorText}<br />
+                                    </>
                                     : <>No score for this wallet.</>
-                                }
-                            </>
-                            : <>
-                                Connect your wallet to see your score.<br />
-                                <Button onClick={() => connect()}>
-                                    Connect Wallet
-                                </Button>
-                            </>
+                                : <>
+                                    Connect your wallet to see your score.<br />
+                                    <Button onClick={() => {
+                                        setLoading(true);
+                                        connect();
+                                    }}>
+                                        Connect Wallet
+                                    </Button>
+                                </>
                         }
-                    </Grid>
+                    </div>
                 </GridRow>
                 <GridRow>
                     <Panel>

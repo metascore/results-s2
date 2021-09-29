@@ -123,3 +123,10 @@ hr {
 img.fluid {
   max-width: 100%;
 }
+
+@media (max-width: 560px) {
+  .hide-sm {
+    display: none;
+  }
+
+}
