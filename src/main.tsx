@@ -5,7 +5,6 @@ import "@fontsource/inter";
 import "@fontsource/inter/400.css";
 import "@fontsource/inter/variable-full.css";
 import "@fontsource/space-mono";
-import "@fontsource/vt323";
 import './index.css'
 import App from './App'
 

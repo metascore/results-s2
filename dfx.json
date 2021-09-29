@@ -2,7 +2,7 @@
     "version": 1,
     "dfx": "0.8.0",
     "canisters": {
-      "tourney": {
+      "results-s2": {
         "dependencies": [],
         "frontend": {
           "entrypoint": "dist/index.html"
