@@ -52,8 +52,6 @@ export default function LeaderboardPanel ({ children } : Props) {
         score: Number(score.score),
     })).slice(offset, perPage + offset);
 
-    console.log(offset, page * perPage);
-
     return (
         <div className={Styles.root}>
             <Panel>

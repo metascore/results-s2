@@ -10,6 +10,31 @@ import Button from 'components/button/button';
 import { useStoic } from 'context/stoic';
 import Panel from 'components/panel/panel';
 import Loader from 'components/loader/loader';
+import Badge1 from 'assets/badges/1.webp';
+import Badge2 from 'assets/badges/2.webp';
+import Badge3 from 'assets/badges/3.webp';
+import Badge4 from 'assets/badges/4.webp';
+import Badge5 from 'assets/badges/5.webp';
+import Badge6 from 'assets/badges/6.webp';
+import Styles from './index.module.css';
+
+const badges = [
+    Badge6,
+    Badge5,
+    Badge4,
+    Badge3,
+    Badge2,
+    Badge1,
+];
+
+const ranks = [
+    'Best Gamer of the Hackathon',
+    '2nd Best Tournament Gamer',
+    '3rd Best Tournament Gamer',
+    'Elite Tournament Gamer',
+    'Strong Tournament Gamer',
+    'Tournament Gamer',
+];
 
 
 export default function Index() {
@@ -55,13 +80,16 @@ export default function Index() {
                             ? <Loader />
                             : account
                                 ? userScore
-                                    ? <>
-                                        Alias: {userScore.account.alias}<br />
-                                        Rank: {userScore.account.rank}<br />
-                                        Position: #{Scores.indexOf(userScore) + 1}<br />
-                                        Final Score: {userScore.score}<br />
-                                        Flavor Text: {userScore.account.flavorText}<br />
-                                    </>
+                                    ? <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '20px'}}>
+                                        <h1>{userScore.account.alias}, The {ranks[userScore.account.rank]}</h1>
+                                        <div className={Styles.qwerty}>
+                                            <div>Final Score: {numberWithCommas(userScore.score)}</div>
+                                            <div>#{Scores.indexOf(userScore) + 1} / {Scores.length}</div>
+                                        </div>
+                                        <img src={badges[userScore.account.rank]} width={300} height={321} />
+                                        <div className={Styles.flava}>{userScore.account.flavorText && `“${userScore.account.flavorText}”`}</div>
+                                        <div><small><em>Your rank badge will be dropped to your stoic wallet in the next week or two.</em></small></div>
+                                    </div>
                                     : <>No score for this wallet.</>
                                 : <>
                                     Connect your wallet to see your score.<br />
@@ -91,3 +119,7 @@ export default function Index() {
     );
 
 };
+
+function numberWithCommas(x : number) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "_");
+}
