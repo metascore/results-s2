@@ -1,0 +1,26 @@
+.root {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.big {
+    gap: 100px;
+}
+
+.row {
+    display: flex;
+    gap: 30px;
+}
+
+.center {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .row {
+        flex-direction: column;
+    }
+}

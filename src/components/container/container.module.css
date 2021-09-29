@@ -1,0 +1,15 @@
+.root {
+    box-sizing: border-box;
+    max-width: 1320px;
+    width: 100vw;
+    padding: 30px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+}
+
+@media (max-width: 639px) {
+    .root {
+        padding: 20px 1px;
+    }
+}

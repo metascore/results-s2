@@ -1,0 +1,129 @@
+.root {
+    display: table;
+    align-items: center;
+}
+
+.head {}
+
+.head .cell {
+    font-size: 12px;
+}
+
+.head .cell.score {
+    font-family: var(--font-stack);
+}
+
+.body {}
+
+.row {
+    padding: 10px 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-gap: 20px;
+    border-bottom: 1px solid var(--colour-chrome-1);
+    align-items: center;
+}
+
+.cell.position {
+    grid-column: 1;
+    text-align: left;
+}
+.cell.name {
+    grid-column: 2/6;
+}
+.cell.score {
+    text-align: right;
+    font-family: var(--font-stack-mono);
+    grid-column: 7/10;
+}
+.cell.gamesPlayed {
+    grid-column: 11;
+}
+.cell.podiumFinishes {
+    grid-column: 12;
+}
+
+/* .root.game .cell.name { */
+.root .cell.name {
+    grid-column: 2/9;
+}
+/* .root.game .cell.score { */
+.root .cell.score {
+    grid-column: 10/13;
+}
+
+.avatar {
+    border-radius: 50%;
+}
+
+.cell {
+    display: flex;
+    gap: 10px;
+    font-size: 18px;
+    grid-row: 1;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+.smallLabel {
+    display: none;
+}
+
+@media (max-width: 639px) {
+    .smallLabel {
+        display: flex;
+    }
+    .row {
+        padding: 5px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-gap: 5px;
+        border-bottom: 1px solid var(--colour-chrome-1);
+        align-items: center;
+    }
+    .head {
+        display: none;
+    }
+    .cell.name {
+        text-align: left;
+        grid-column: 1 / span 6;
+        grid-row: 1;
+    }
+    .cell.score {
+        grid-column: 7 / span 6;
+        grid-row: 1;
+    }
+    .cell.position {
+        grid-column: 1 / span 2;
+        grid-row: 2;
+        color: #AFA6B9;
+        font-size: 14px;
+    }
+    .cell.gamesPlayed {
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+        gap: 5px;
+        text-align: right;
+        grid-row: 2;
+        color: #AFA6B9;
+        grid-column: 3 / span 5;
+        font-size: 14px;
+    }
+    .cell.podiumFinishes {
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+        gap: 5px;
+        text-align: right;
+        grid-row: 2;
+        color: #AFA6B9;
+        grid-column: 8 / span 5;
+        font-size: 14px;
+    }
+    .smallLabel {
+        font-size: 12px;
+        text-transform: uppercase;
+    }
+}
