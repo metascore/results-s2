@@ -19,21 +19,21 @@ import Badge6 from 'assets/badges/6.webp';
 import Styles from './index.module.css';
 
 const badges = [
-    Badge6,
-    Badge5,
-    Badge4,
-    Badge3,
-    Badge2,
     Badge1,
+    Badge2,
+    Badge3,
+    Badge4,
+    Badge5,
+    Badge6,
 ];
 
 const ranks = [
-    'Best Gamer of the Hackathon',
-    '2nd Best Tournament Gamer',
-    '3rd Best Tournament Gamer',
-    'Elite Tournament Gamer',
-    'Strong Tournament Gamer',
     'Tournament Gamer',
+    'Strong Tournament Gamer',
+    'Elite Tournament Gamer',
+    '3rd Best Tournament Gamer',
+    '2nd Best Tournament Gamer',
+    'Best Gamer of the Hackathon',
 ];
 
 
@@ -43,7 +43,12 @@ export default function Index() {
     const { connect } = useStoic();
 
     const [loading, setLoading] = React.useState(true);
+    // const [loading, setLoading] = React.useState(false);
 
+    // const userScore = React.useMemo(() => {
+    //     const score = Scores.find((x) => x.account.id === 2718);
+    //     return score;
+    // }, [account])
     const userScore = React.useMemo(() => {
         if (!account) {
             setLoading(false);
@@ -81,12 +86,12 @@ export default function Index() {
                             : account
                                 ? userScore
                                     ? <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '20px'}}>
-                                        <h1>{userScore.account.alias}, The {ranks[userScore.account.rank]}</h1>
+                                        <h1>{userScore.account.alias}, The {ranks[userScore.account.rank - 1]}</h1>
                                         <div className={Styles.qwerty}>
                                             <div>Final Score: {numberWithCommas(userScore.score)}</div>
                                             <div>#{Scores.indexOf(userScore) + 1} / {Scores.length}</div>
                                         </div>
-                                        <img src={badges[userScore.account.rank]} width={300} height={321} />
+                                        <img src={badges[userScore.account.rank - 1]} width={300} height={321} />
                                         <div className={Styles.flava}>{userScore.account.flavorText && `“${userScore.account.flavorText}”`}</div>
                                         <div><small><em>Your rank badge will be dropped to your stoic wallet in the next week or two.</em></small></div>
                                     </div>
